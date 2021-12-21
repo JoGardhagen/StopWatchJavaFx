@@ -16,14 +16,8 @@ import javafx.scene.text.Text;
 import javafx.util.Duration;
 
 public class Controller implements Initializable {
-	
-	Time timeNow = new Time(new CurrentTime().currentTime());
-	//DateTimeFormatter dtf = DateTimeFormatter.ofPattern("HH:mm:ss");
+
 	Time time = new Time("00:00:00");
-	
-//	public StopWatchController() {
-//		
-//	}
 
 	@FXML
 	private Text clock;
@@ -32,56 +26,41 @@ public class Controller implements Initializable {
 	@FXML
 	private ListView<String> stopList;
 	boolean isClicked = false;
-	//CurrentTime time = new CurrentTime();
-	Timeline timeline; //= new Timeline(new KeyFrame(Duration.seconds(1)));
-	
+
+	Timeline timeline;
+
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
 		clock.setText(time.getCurrentTime());
-		//clock.setText(String.valueOf(i));
-//		clock.setText(time.getCurrentTime());
-		timeline = new Timeline(new KeyFrame(Duration.seconds(1),e ->{
-//			i++;
+		timeline = new Timeline(new KeyFrame(Duration.seconds(1), e -> {
 			time.oneSecondPassed();
 			clock.setText(time.getCurrentTime());
-			//clock.setText(time.getCurrentTime());
-			//clock.setText(String.valueOf(i));
 		}));
-		
+
 		timeline.setCycleCount(Animation.INDEFINITE);
-       
-       
-		
+
 	}
+
 	public void startStop(ActionEvent event) {
-		 
-		 buttonClicked();
+
+		buttonClicked();
 	}
+
 	private void buttonClicked() {
-		
+
 		if (!isClicked) {
 			timeline.play();
 			isClicked = true;
-		}
-		else {
+		} else {
 			timeline.stop();
 			isClicked = false;
+			Time timeNow = new Time(new CurrentTime().currentTime());// måste har nytid här annars resettar han inte
 			String onThaClock = timeNow.getCurrentTime();
 			String newTime = time.getCurrentTime().toString();
-			stopList.getItems().addAll(onThaClock+"\t"+newTime);
-			
+			stopList.getItems().addAll(onThaClock + "\t" + newTime);
+
 		}
-		
+
 	}
-	
+
 }
-
-
-
-
-
-
-
-
-
-
