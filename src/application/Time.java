@@ -21,6 +21,16 @@ public class Time {
     public String getCurrentTime(){
         return hour + ":" + minute + ":" + second;
     }
+    public String timeReset(String currentTime) {
+    	String[] time = currentTime.split(":");
+    	hour = Integer.parseInt(time[0]);
+        minute = Integer.parseInt(time[1]);
+        second = Integer.parseInt(time[2]);
+        hour = 0;
+        minute = 0;
+        second = 0;
+    	return hour + ":" + minute + ":" + second;
+    }
 
     public void oneSecondPassed(){
         second++;

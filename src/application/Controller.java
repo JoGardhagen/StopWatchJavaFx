@@ -22,7 +22,7 @@ public class Controller implements Initializable {
 	@FXML
 	private Text clock;
 	@FXML
-	private Button button1;
+	private Button button1,reset;
 	@FXML
 	private ListView<String> stopList;
 	boolean isClicked = false;
@@ -57,10 +57,15 @@ public class Controller implements Initializable {
 			Time timeNow = new Time(new CurrentTime().currentTime());// måste har nytid här annars resettar han inte
 			String onThaClock = timeNow.getCurrentTime();
 			String newTime = time.getCurrentTime().toString();
-			stopList.getItems().addAll(onThaClock + "\t" + newTime);
+			stopList.getItems().addAll(onThaClock + "\t" + newTime+"\t stopped");
 
 		}
 
 	}
+	public void resetClear(ActionEvent event) {
+		stopList.getItems().add("reset timer");
+		time.timeReset(time.getCurrentTime());
+	}
+	
 
 }

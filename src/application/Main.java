@@ -14,6 +14,7 @@ public class Main extends Application {
 			BorderPane root = (BorderPane)FXMLLoader.load(getClass().getResource("Sample.fxml"));
 			Scene scene = new Scene(root);
 			scene.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
+			primaryStage.setResizable(false);
 			primaryStage.setTitle("StopUr");
 			primaryStage.setScene(scene);
 			primaryStage.show();
